@@ -31,7 +31,11 @@ type FeatureCardConfig = {
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 export default function Home() {
@@ -40,38 +44,44 @@ export default function Home() {
       title: "Cost Efficiency",
       copy: (
         <>
-          <span className="font-semibold">Lower marginal cost.</span> No demand
-          incentive, onboarding, or shift management.{" "}
-          <span className="font-semibold">Scales with software.</span>
+          Lower cost per delivery. No incentives, no shift management, and no
+          onboarding.{" "}
+          <span className="font-semibold text-[#002f6c]">
+            Achieve economies of scale through software.
+          </span>
         </>
       ),
       icon: DollarSign,
       accent:
-        "bg-[radial-gradient(circle_at_top,_rgba(0,47,108,0.55),_transparent_65%)]",
+        "bg-[radial-gradient(circle_at_top,_rgba(0,47,108,0.15),_transparent_65%)]",
     },
     {
       title: "Stable Supply",
       copy: (
         <>
-          Robots don&apos;t get sick, quit, or face labor shortages.{" "}
-          <span className="font-semibold">Zero pre-scheduling required.</span>
+          No pre-scheduling needed.{" "}
+          <span className="font-semibold text-[#002f6c]">
+            Reliable performance during peak hours for high-volume operators.
+          </span>
         </>
       ),
       icon: Shield,
       accent:
-        "bg-[radial-gradient(circle_at_center,_rgba(0,47,108,0.5),_transparent_60%)]",
+        "bg-[radial-gradient(circle_at_center,_rgba(0,47,108,0.15),_transparent_60%)]",
     },
     {
-      title: "Operational Fit",
+      title: "Carbon Reduction Responsibility",
       copy: (
         <>
-          Seamlessly integrates with your existing Order Management Systems
-          (OMS) via <span className="font-semibold">robust API.</span>
+          Zero-emission electric mobility.{" "}
+          <span className="font-semibold text-[#002f6c]">
+            Supports your ESG and sustainability goals.
+          </span>
         </>
       ),
       icon: Settings2,
       accent:
-        "bg-[radial-gradient(circle_at_bottom,_rgba(255,255,255,0.12),_transparent_55%)]",
+        "bg-[radial-gradient(circle_at_bottom,_rgba(250,128,114,0.18),_transparent_55%)]",
     },
   ];
 
@@ -79,28 +89,28 @@ export default function Home() {
     {
       title: "Grocery Retailers",
       description:
-        "Deliver peak-hour orders without clogging store parking lots. Seamless POS integrations keep substitutions in sync.",
+        "Deliver groceries quickly and sustainably within nearby neighborhoods.",
       icon: ShoppingCart,
     },
     {
       title: "Delivery Apps",
       description:
-        "Stabilize margins with predictable fleet utilization. Live ETA sharing keeps diners in the loop down to the second.",
+        "Integrate smoothly with your current operations and lower customer acquisition costs.",
       icon: Utensils,
     },
     {
       title: "Restaurants",
       description:
-        "Efficiently handle high-volume orders and complex meal assembly, ensuring hot and fresh delivery.",
+        "Handle high-volume orders, even during peak hours. Our robots promote your brand presence and increase local awareness.",
       icon: Store,
     },
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-primary text-surface">
-      <div className="pointer-events-none absolute inset-0 bg-hero-gradient opacity-80" />
-      <div className="pointer-events-none absolute inset-0 bg-grid-overlay bg-grid-overlay opacity-50" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-primary/40 to-brand-blue/40" />
+    <div className="relative min-h-screen overflow-hidden bg-[#f2f2f2] text-[#111827]">
+      {/* 背景のグリッドとグラデーション（少しだけ残す） */}
+      <div className="pointer-events-none absolute inset-0 bg-hero-gradient opacity-40" />
+      <div className="pointer-events-none absolute inset-0 bg-grid-overlay bg-grid-overlay opacity-20" />
 
       <motion.main
         initial="hidden"
@@ -110,35 +120,40 @@ export default function Home() {
         {/* Header */}
         <motion.header
           variants={fadeIn}
-          className="sticky top-6 z-10 flex items-center justify-between rounded-2xl border border-white/10 bg-primary/60 px-6 py-4 backdrop-blur-xl"
+          className="sticky top-6 z-10 flex items-center justify-between rounded-2xl border border-[#e5e7eb] bg-[#ffffffcc] px-6 py-4 shadow-md backdrop-blur-xl"
         >
-          <div className="font-semibold tracking-[0.2em] text-surface">
+          <div className="font-semibold tracking-[0.2em] text-[#002f6c]">
             SAAMON
           </div>
-          <button className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm font-medium text-surface transition hover:border-accent/60 hover:text-surface">
-            Contact us
-            <MoveUpRight className="h-4 w-4 text-accent transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <button className="
+          mt-8 rounded-full bg-[#fa8072] px-6 py-3
+          text-sm font-medium text-white shadow-md
+          transition hover:bg-[#e87065]
+          ">
+          Contact us
           </button>
+
         </motion.header>
 
-        {/* Hero */}
+        {/* Hero（レイアウトそのまま） */}
         <section className="relative">
           <motion.div
             variants={fadeIn}
-            className="relative flex min-h-[550px] flex-col justify-center gap-8 overflow-hidden rounded-[32px] border border-white/10 bg-[url('/saamon-robot.png')] bg-cover bg-center p-10 shadow-glow"
+            className="relative flex min-h-[550px] flex-col justify-center gap-8 overflow-hidden rounded-[32px] border border-[#e5e7eb] bg-[url('/saamon-robot.png')] bg-cover bg-center p-10 shadow-[0_30px_80px_rgba(15,23,42,0.30)]"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-            <div className="relative z-10 max-w-3xl space-y-6 pr-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-surface/60">
+            <div className="relative z-10 max-w-lg space-y-6 pr-12">
+              <p className="text-sm uppercase tracking-[0.35em] text-white/60">
                 Autonomous Delivery Robotics
               </p>
-              <h1 className="text-4xl font-semibold leading-tight text-surface sm:text-5xl lg:text-6xl">
-                Autonomous Delivery for the Next Billion Local Deliveries.
+              <h1 className="text-3xl font-semibold leading-snug text-white sm:text-4xl lg:text-4xl">
+                Autonomous delivery robots for the next local delivery
               </h1>
-              <p className="text-lg text-surface/80">
-                Saamon is the self-driving platform that makes sustainable,
-                ultra-low-cost delivery a reality for enterprise retailers.
+              <p className="text-lg text-white/85">
+                Saamon enables low-cost, self-driving delivery for enterprise
+                retailers and delivery apps
               </p>
+
               <HeroEmailForm />
             </div>
           </motion.div>
@@ -150,15 +165,14 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="space-y-6 rounded-[32px] border border-white/10 bg-white/[0.02] p-8"
+          className="space-y-6 rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
         >
           <div className="space-y-3">
-            <p className="text-sm uppercase tracking-[0.35em] text-surface/60">
-              System Architecture
+            <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+              The Solution
             </p>
-            <h2 className="text-3xl font-semibold text-surface">
-              The Saamon Solution: Accelerated Order Fulfillment and Resilient
-              Autonomy.
+            <h2 className="text-3xl font-semibold text-[#002f6c]">
+              Stable delivery. Reliable autonomy. Lower cost per drop.
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -168,72 +182,88 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Target */}
-        <motion.section
+        {/* Use Cases */}
+          <motion.section
           variants={fadeIn}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="grid gap-8 rounded-[32px] border border-white/10 bg-primary/40 p-8 lg:grid-cols-2"
+        className="rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
         >
-          <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-surface/60">
-              User Cases
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold">
-              Precision built for dense, urban operators
-            </h2>
-            <p className="mt-4 text-surface/70">
-              We deploy in structured campuses first, then expand block-by-block
-              with pre-negotiated municipality data sharing agreements to keep
-              the fleets street-legal from day one.
-            </p>
-          </div>
-          <div className="space-y-6">
-            {targets.map((target) => (
-              <motion.div
-                key={target.title}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:flex-row md:items-start"
-              >
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <target.icon className="h-6 w-6 text-brand-blue" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-surface">
-                    {target.title}
-                  </h3>
-                  <p className="mt-2 text-surface/70">{target.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        <div className="mb-8">
+        <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+        Use Cases
+        </p>
+    <h2 className="mt-3 text-3xl font-semibold text-[#002f6c]">
+      Built for high-density operators
+    </h2>
+    <p className="mt-4 max-w-xl text-[#4b5563]">
+      We partner with retailers, delivery platforms, and restaurants to enable reliable autonomous delivery for local operations.
+    </p>
+  </div>
+
+  {/* 横並びレイアウト */}
+  <div className="grid gap-6 md:grid-cols-3">
+    {targets.map((target) => (
+      <div
+        key={target.title}
+        className="flex flex-col gap-4 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-6 shadow-card hover:shadow-cardHover transition"
+      >
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-white">
+          <target.icon className="h-6 w-6 text-[#002f6c]" />
+        </div>
+        <h3 className="text-xl font-semibold text-[#002f6c]">
+          {target.title}
+        </h3>
+        <p className="text-[#4b5563]">{target.description}</p>
+      </div>
+    ))}
+  </div>
+</motion.section>
+
 
         {/* Contact */}
-        <motion.section
+<motion.section
+  variants={fadeIn}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.4 }}
+  className="rounded-[32px] border border-[#e5e7eb] bg-white p-8 shadow-card"
+>
+  <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+    Contact
+  </p>
+  <h2 className="mt-2 text-3xl font-semibold text-[#002f6c]">
+    Request a Pilot
+  </h2>
+  <p className="mt-3 max-w-xl text-[#4b5563]">
+    We partner with retailers, delivery platforms, and municipalities to deploy
+    autonomous deliveries.
+  </p>
+
+  <div className="mt-6">
+    <ContactForm />
+  </div>
+</motion.section>
+
+
+        {/* Footer */}
+        <motion.footer
           variants={fadeIn}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="rounded-[32px] border border-white/10 bg-gradient-to-b from-brand-blue/60 via-primary to-primary/80 p-8"
+          className="mx-auto mt-10 w-full max-w-6xl border-t border-[#e5e7eb] pt-6 text-[#6b7280]"
         >
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.35em] text-surface/60">
-              Contact
-            </p>
-            <h2 className="text-3xl font-semibold">
-              Request a pilot
-            </h2>
-            <p className="text-surface/70">
-              We&apos;re looking for a partner with pilot!
-            </p>
+          <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
+            <span className="text-sm">
+              © {new Date().getFullYear()} Saamon. All rights reserved.
+            </span>
+            <span className="text-xs">
+              Built for the next generation of local delivery.
+            </span>
           </div>
-          <ContactForm />
-        </motion.section>
+        </motion.footer>
       </motion.main>
     </div>
   );
@@ -279,21 +309,22 @@ function FeatureCard({ card }: { card: FeatureCardConfig }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="group relative h-full rounded-3xl bg-gradient-to-br from-[#002F6C]/70 via-[#24272B] to-[#002F6C]/30 p-[1.5px] shadow-[0_35px_80px_rgba(0,0,0,0.55)]"
+        className="group relative h-full rounded-3xl bg-gradient-to-br from-[#ffffff] via-[#f3f4f6] to-[#e5e7eb] p-[1.5px] shadow-[0_20px_40px_rgba(15,23,42,0.15)]"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
-        <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/[0.02] p-6">
+        <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/70 bg-white p-6">
           <motion.div
             aria-hidden
             className={`pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-80 ${card.accent}`}
             style={{ x: glowX, y: glowY }}
           />
-          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-surface">
-            <card.icon className="h-6 w-6 text-accent" />
+          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-[#f3f4f6] text-[#002f6c]">
+            <card.icon className="h-6 w-6 text-[#002f6c]" />
           </div>
-          <h3 className="mb-3 text-xl font-semibold">{card.title}</h3>
-          <p className="text-surface/70">{card.copy}</p>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+          <h3 className="mb-3 text-xl font-semibold text-[#002f6c]">
+            {card.title}
+          </h3>
+          <p className="text-[#4b5563]">{card.copy}</p>
         </div>
       </motion.div>
     </div>

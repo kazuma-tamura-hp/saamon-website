@@ -1,3 +1,5 @@
+// tailwind.config.ts
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,25 +11,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#24272B",
-        accent: "#FA8072",
-        surface: "#F2F2F2",
-        "brand-blue": "#002F6C",
+        saamon: {
+          base: "#F2F2F2",      // ページ背景
+          baseSoft: "#FFFFFF",  // カード背景
+          primary: "#002F6C",   // ネイビー（メイン）
+          accent: "#FA8072",    // CTAカラー
+          text: "#1A1A1A",      // メインテキスト
+          textMuted: "#4A4A4A", // サブテキスト
+        },
       },
+
+      // ▼ フォントを Inter → Noto Sans に変更
       fontFamily: {
-        inter: ["var(--font-inter)", "Inter", "sans-serif"],
+        sans: ["var(--font-noto)", "Noto Sans", "sans-serif"],
       },
-      backgroundImage: {
-        "hero-gradient":
-          "radial-gradient(circle at 20% 20%, rgba(250,128,114,0.35), transparent 45%), radial-gradient(circle at 80% 0%, rgba(0,47,108,0.35), transparent 40%), radial-gradient(circle at 50% 80%, rgba(36,39,43,0.45), transparent 50%)",
-        "grid-overlay":
-          "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-      },
-      backgroundSize: {
-        "grid-overlay": "60px 60px",
-      },
+
       boxShadow: {
-        glow: "0 0 45px rgba(0,47,108,0.55)",
+        card: "0 4px 24px rgba(0,0,0,0.05)",
+        cardHover: "0 8px 32px rgba(0,0,0,0.08)",
       },
     },
   },
@@ -35,4 +36,3 @@ const config: Config = {
 };
 
 export default config;
-
