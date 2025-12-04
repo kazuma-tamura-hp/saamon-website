@@ -1,11 +1,37 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 export default function ContactForm() {
-  const handleSubmit = (e: FormEvent) => {
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 送信処理を後で追加する場合はここに
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/mgvjpeyj", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -17,7 +43,7 @@ export default function ContactForm() {
             type="text"
             name="name"
             className="w-full rounded-xl border border-[#e5e7eb] bg-[#f9fafb] px-4 py-2 text-sm text-[#111827] placeholder-[#9ca3af] focus:border-[#002f6c] focus:outline-none"
-            placeholder="Yuki Saamon"
+            placeholder="Kazuma Tamura"
             required
           />
         </div>
@@ -27,7 +53,7 @@ export default function ContactForm() {
             type="text"
             name="company"
             className="w-full rounded-xl border border-[#e5e7eb] bg-[#f9fafb] px-4 py-2 text-sm text-[#111827] placeholder-[#9ca3af] focus:border-[#002f6c] focus:outline-none"
-            placeholder="MetroFresh"
+            placeholder="saamon"
           />
         </div>
       </div>
@@ -38,22 +64,33 @@ export default function ContactForm() {
           type="email"
           name="email"
           className="w-full rounded-xl border border-[#e5e7eb] bg-[#f9fafb] px-4 py-2 text-sm text-[#111827] placeholder-[#9ca3af] focus:border-[#002f6c] focus:outline-none"
-          placeholder="team@metrofresh.com"
+          placeholder="kazuma.tamura@saamon.com"
           required
         />
       </div>
 
-      {/* ここだけが唯一の Contact us ボタン */}
       <button
         type="submit"
+        disabled={status === "sending"}
         className="
           rounded-full bg-[#fa8072] px-6 py-3
           text-sm font-medium text-white shadow-md
-          transition hover:bg-[#e87065]
+          transition hover:bg-[#e87065] disabled:opacity-70
         "
       >
-        Contact us
+        {status === "sending" ? "Sending..." : "Contact us"}
       </button>
+
+      {status === "success" && (
+        <p className="text-sm text-green-600">
+          Thank you! We will get back to you soon.
+        </p>
+      )}
+      {status === "error" && (
+        <p className="text-sm text-red-600">
+          Something went wrong. Please try again, or email us directly.
+        </p>
+      )}
     </form>
   );
 }

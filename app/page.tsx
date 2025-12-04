@@ -13,7 +13,6 @@ import {
   DollarSign,
   Shield,
   Settings2,
-  MoveUpRight,
   ShoppingCart,
   Utensils,
   Store,
@@ -39,6 +38,17 @@ const fadeIn: Variants = {
 };
 
 export default function Home() {
+  // ↓ Contact セクションへのスクロール用
+  const contactSectionRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToContact = () => {
+    if (!contactSectionRef.current) return;
+    contactSectionRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   const featureCards: FeatureCardConfig[] = [
     {
       title: "Cost Efficiency",
@@ -108,7 +118,7 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#f2f2f2] text-[#111827]">
-      {/* 背景のグリッドとグラデーション（少しだけ残す） */}
+      {/* 背景 */}
       <div className="pointer-events-none absolute inset-0 bg-hero-gradient opacity-40" />
       <div className="pointer-events-none absolute inset-0 bg-grid-overlay bg-grid-overlay opacity-20" />
 
@@ -125,17 +135,19 @@ export default function Home() {
           <div className="font-semibold tracking-[0.2em] text-[#002f6c]">
             SAAMON
           </div>
-          <button className="
-          mt-8 rounded-full bg-[#fa8072] px-6 py-3
-          text-sm font-medium text-white shadow-md
-          transition hover:bg-[#e87065]
-          ">
-          Contact us
+          <button
+            onClick={scrollToContact}
+            className="
+              rounded-full bg-[#fa8072] px-6 py-3
+              text-sm font-medium text-white shadow-md
+              transition hover:bg-[#e87065]
+            "
+          >
+            Contact us
           </button>
-
         </motion.header>
 
-        {/* Hero（レイアウトそのまま） */}
+        {/* Hero */}
         <section className="relative">
           <motion.div
             variants={fadeIn}
@@ -154,6 +166,7 @@ export default function Home() {
                 retailers and delivery apps
               </p>
 
+              {/* メールアドレス1項目だけの Formspree フォーム */}
               <HeroEmailForm />
             </div>
           </motion.div>
@@ -183,69 +196,68 @@ export default function Home() {
         </motion.section>
 
         {/* Use Cases */}
-          <motion.section
+        <motion.section
           variants={fadeIn}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-        className="rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
+          className="rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
         >
-        <div className="mb-8">
-        <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
-        Use Cases
-        </p>
-    <h2 className="mt-3 text-3xl font-semibold text-[#002f6c]">
-      Built for high-density operators
-    </h2>
-    <p className="mt-4 max-w-xl text-[#4b5563]">
-      We partner with retailers, delivery platforms, and restaurants to enable reliable autonomous delivery for local operations.
-    </p>
-  </div>
+          <div className="mb-8">
+            <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+              Use Cases
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#002f6c]">
+              Built for high-density operators
+            </h2>
+            <p className="mt-4 max-w-xl text-[#4b5563]">
+              We partner with retailers, delivery platforms, and restaurants to
+              enable reliable autonomous delivery for local operations.
+            </p>
+          </div>
 
-  {/* 横並びレイアウト */}
-  <div className="grid gap-6 md:grid-cols-3">
-    {targets.map((target) => (
-      <div
-        key={target.title}
-        className="flex flex-col gap-4 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-6 shadow-card hover:shadow-cardHover transition"
-      >
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-white">
-          <target.icon className="h-6 w-6 text-[#002f6c]" />
-        </div>
-        <h3 className="text-xl font-semibold text-[#002f6c]">
-          {target.title}
-        </h3>
-        <p className="text-[#4b5563]">{target.description}</p>
-      </div>
-    ))}
-  </div>
-</motion.section>
-
+          <div className="grid gap-6 md:grid-cols-3">
+            {targets.map((target) => (
+              <div
+                key={target.title}
+                className="flex flex-col gap-4 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-6 shadow-card transition hover:shadow-cardHover"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-white">
+                  <target.icon className="h-6 w-6 text-[#002f6c]" />
+                </div>
+                <h3 className="text-xl font-semibold text-[#002f6c]">
+                  {target.title}
+                </h3>
+                <p className="text-[#4b5563]">{target.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
 
         {/* Contact */}
-<motion.section
-  variants={fadeIn}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.4 }}
-  className="rounded-[32px] border border-[#e5e7eb] bg-white p-8 shadow-card"
->
-  <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
-    Contact
-  </p>
-  <h2 className="mt-2 text-3xl font-semibold text-[#002f6c]">
-    Request a Pilot
-  </h2>
-  <p className="mt-3 max-w-xl text-[#4b5563]">
-    We partner with retailers, delivery platforms, and municipalities to deploy
-    autonomous deliveries.
-  </p>
+        <motion.section
+          ref={contactSectionRef}
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="rounded-[32px] border border-[#e5e7eb] bg-white p-8 shadow-card"
+        >
+          <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+            Contact
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold text-[#002f6c]">
+            Request a Pilot
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4b5563]">
+            We partner with retailers, delivery platforms, and municipalities to
+            deploy autonomous deliveries.
+          </p>
 
-  <div className="mt-6">
-    <ContactForm />
-  </div>
-</motion.section>
-
+          <div className="mt-6">
+            <ContactForm />
+          </div>
+        </motion.section>
 
         {/* Footer */}
         <motion.footer
