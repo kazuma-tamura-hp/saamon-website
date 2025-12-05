@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import type { ReactNode, MouseEvent } from "react";
+import type { ReactNode, MouseEvent, JSX } from "react"; // JSX を追加
 import { Icon } from "@iconify/react";
 import {
   motion,
