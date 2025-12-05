@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import type { ReactNode, MouseEvent } from "react";
+import { Icon } from "@iconify/react";
 import {
   motion,
   type Variants,
@@ -9,23 +10,20 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import {
-  DollarSign,
-  Shield,
-  Settings2,
-  ShoppingCart,
-  Utensils,
-  Store,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import HeroEmailForm from "@/components/HeroEmailForm";
 
 type FeatureCardConfig = {
   title: string;
   copy: ReactNode;
-  icon: LucideIcon;
+  icon: () => JSX.Element; // Iconify 用
   accent: string;
+};
+
+type TargetConfig = {
+  title: string;
+  description: string;
+  icon: () => JSX.Element; // Iconify 用
 };
 
 const fadeIn: Variants = {
@@ -38,7 +36,7 @@ const fadeIn: Variants = {
 };
 
 export default function Home() {
-  // ↓ Contact セクションへのスクロール用
+  // Contact セクションへのスクロール用
   const contactSectionRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToContact = () => {
@@ -61,7 +59,9 @@ export default function Home() {
           </span>
         </>
       ),
-      icon: DollarSign,
+      icon: () => (
+        <Icon icon="mdi:hand-coin-outline" width={32} height={32} />
+      ),
       accent:
         "bg-[radial-gradient(circle_at_top,_rgba(0,47,108,0.15),_transparent_65%)]",
     },
@@ -75,7 +75,7 @@ export default function Home() {
           </span>
         </>
       ),
-      icon: Shield,
+      icon: () => <Icon icon="mdi:checkerboard" width={32} height={32} />,
       accent:
         "bg-[radial-gradient(circle_at_center,_rgba(0,47,108,0.15),_transparent_60%)]",
     },
@@ -89,30 +89,30 @@ export default function Home() {
           </span>
         </>
       ),
-      icon: Settings2,
+      icon: () => <Icon icon="mdi:leaf" width={32} height={32} />,
       accent:
         "bg-[radial-gradient(circle_at_bottom,_rgba(250,128,114,0.18),_transparent_55%)]",
     },
   ];
 
-  const targets = [
+  const targets: TargetConfig[] = [
     {
       title: "Grocery Retailers",
       description:
         "Deliver groceries quickly and sustainably within nearby neighborhoods.",
-      icon: ShoppingCart,
+      icon: () => <Icon icon="mdi:cart-outline" width={32} height={32} />,
     },
     {
       title: "Delivery Apps",
       description:
         "Integrate smoothly with your current operations and lower customer acquisition costs.",
-      icon: Utensils,
+      icon: () => <Icon icon="mdi:delivery-dining" width={32} height={32} />,
     },
     {
       title: "Restaurants",
       description:
         "Handle high-volume orders, even during peak hours. Our robots promote your brand presence and increase local awareness.",
-      icon: Store,
+      icon: () => <Icon icon="mdi:shop" width={32} height={32} />,
     },
   ];
 
@@ -223,7 +223,7 @@ export default function Home() {
                 className="flex flex-col gap-4 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-6 shadow-card transition hover:shadow-cardHover"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-white">
-                  <target.icon className="h-6 w-6 text-[#002f6c]" />
+                  {target.icon()}
                 </div>
                 <h3 className="text-xl font-semibold text-[#002f6c]">
                   {target.title}
@@ -331,7 +331,7 @@ function FeatureCard({ card }: { card: FeatureCardConfig }) {
             style={{ x: glowX, y: glowY }}
           />
           <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-[#f3f4f6] text-[#002f6c]">
-            <card.icon className="h-6 w-6 text-[#002f6c]" />
+            {card.icon()}
           </div>
           <h3 className="mb-3 text-xl font-semibold text-[#002f6c]">
             {card.title}
