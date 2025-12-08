@@ -22,6 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={notoSans.variable}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="IEtVIF2dzMjq7Inm2C9DUPSPjrLmjHsrPmrA_OhB9jw"
+        />
+      </head>
       <body className="font-sans antialiased bg-[#f2f2f2] text-[#111827]">
         {children}
       </body>

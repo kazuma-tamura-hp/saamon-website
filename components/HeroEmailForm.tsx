@@ -54,7 +54,7 @@ export default function HeroEmailForm() {
       {/* 成功メッセージをここに表示（メールボックスの下） */}
       {status === "success" && (
         <p className="mt-3 text-sm text-green-300">
-          Thank you! We will get back to you soon.
+          Thanks! We will get back to you soon.
         </p>
       )}
 
