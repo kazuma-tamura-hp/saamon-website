@@ -4,7 +4,8 @@ import { useState } from "react";
 
 export default function HeroEmailForm() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] =
+    useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,8 +26,8 @@ export default function HeroEmailForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md">
-      {/* メール入力 + ボタン */}
-      <div className="flex items-center gap-3">
+      {/* メール入力 + ボタン（スマホは縦 / sm 以上は横） */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <input
           type="email"
           value={email}
@@ -34,24 +35,30 @@ export default function HeroEmailForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
           className="
-            flex-1 rounded-full border border-white/40 bg-white/10 px-4 py-3
-            text-white placeholder-white/60 backdrop-blur-md
+            flex-1 rounded-full border border-white/40 bg-white/10
+            px-4 py-3 text-white placeholder-white/60 backdrop-blur-md
             focus:outline-none focus:ring-2 focus:ring-[#fa8072]
           "
         />
+
+        {/* ★ 左寄せ + 幅1/3（スマホ） */}
         <button
           type="submit"
           className="
-            rounded-full bg-[#fa8072] px-6 py-3
-            text-sm font-medium text-white shadow-md
+            inline-flex items-center justify-center whitespace-nowrap
+            rounded-full bg-[#fa8072]
+            w-1/3            /* ← スマホ時: メール欄の1/3幅 */
+            px-3 py-3 text-sm font-medium text-white shadow-md
             transition hover:bg-[#e87065]
+
+            sm:w-auto sm:px-6 sm:text-sm
           "
         >
           Contact us
         </button>
       </div>
 
-      {/* 成功メッセージをここに表示（メールボックスの下） */}
+      {/* 成功 / エラーメッセージ */}
       {status === "success" && (
         <p className="mt-3 text-sm text-green-300">
           Thanks! We will get back to you soon.

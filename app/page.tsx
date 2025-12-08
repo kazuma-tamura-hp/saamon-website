@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import type { ReactNode, MouseEvent, JSX } from "react"; // JSX を追加
+import type { ReactNode, MouseEvent, JSX } from "react";
 import { Icon } from "@iconify/react";
 import {
   motion,
@@ -10,21 +10,21 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import Image from "next/image"; // ★ 追加
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import HeroEmailForm from "@/components/HeroEmailForm";
 
 type FeatureCardConfig = {
   title: string;
   copy: ReactNode;
-  icon: () => JSX.Element; // Iconify 用
+  icon: () => JSX.Element;
   accent: string;
 };
 
 type TargetConfig = {
   title: string;
   description: string;
-  icon: () => JSX.Element; // Iconify 用
+  icon: () => JSX.Element;
 };
 
 const fadeIn: Variants = {
@@ -37,7 +37,6 @@ const fadeIn: Variants = {
 };
 
 export default function Home() {
-  // Contact セクションへのスクロール用
   const contactSectionRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToContact = () => {
@@ -126,22 +125,23 @@ export default function Home() {
       <motion.main
         initial="hidden"
         animate="visible"
-        className="relative mx-auto flex max-w-6xl flex-col gap-24 px-6 pb-24 pt-10 lg:px-10"
+        className="relative mx-auto flex min-h-screen max-w-6xl flex-col gap-16 px-4 pb-16 pt-6 sm:gap-24 sm:px-6 sm:pb-24 sm:pt-10 lg:px-10"
       >
         {/* Header */}
         <motion.header
           variants={fadeIn}
-          className="sticky top-6 z-10 flex items-center justify-between rounded-2xl border border-[#e5e7eb] bg-[#ffffffcc] px-6 py-4 shadow-md backdrop-blur-xl"
+          className="sticky top-3 z-10 flex items-center justify-between rounded-2xl border border-[#e5e7eb] bg-[#ffffffd9] px-4 py-3 text-xs shadow-md backdrop-blur-xl sm:top-6 sm:px-6 sm:text-sm"
         >
-          <div className="font-semibold tracking-[0.2em] text-[#002f6c]">
+          <div className="font-semibold tracking-[0.25em] text-[#002f6c]">
             SAAMON
           </div>
           <button
             onClick={scrollToContact}
             className="
-              rounded-full bg-[#fa8072] px-6 py-3
-              text-sm font-medium text-white shadow-md
+              rounded-full bg-[#fa8072] px-5 py-2
+              text-xs font-medium text-white shadow-md whitespace-nowrap
               transition hover:bg-[#e87065]
+              sm:px-6 sm:py-3 sm:text-sm
             "
           >
             Contact us
@@ -152,9 +152,9 @@ export default function Home() {
         <section className="relative">
           <motion.div
             variants={fadeIn}
-            className="relative flex min-h-[550px] flex-col justify-center gap-8 overflow-hidden rounded-[32px] border border-[#e5e7eb] p-10 shadow-[0_30px_80px_rgba(15,23,42,0.30)]"
+            className="relative flex min-h-[360px] sm:min-h-[480px] flex-col justify-center gap-6 overflow-hidden rounded-[28px] border border-[#e5e7eb] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.45)] sm:gap-8 sm:rounded-[32px] sm:p-10 sm:shadow-[0_30px_80px_rgba(15,23,42,0.30)]"
           >
-            {/* 背景画像（SEO対応・alt付き） */}
+            {/* 背景画像 */}
             <Image
               src="/saamon-robot.png"
               alt="3D model of Saamon’s autonomous delivery robot designed for self-driving last-mile delivery in urban environments."
@@ -163,23 +163,22 @@ export default function Home() {
               className="absolute inset-0 h-full w-full object-cover"
             />
 
-            {/* 暗くするオーバーレイ */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+            {/* オーバーレイ */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-transparent" />
 
             {/* テキストコンテンツ */}
-            <div className="relative z-10 max-w-lg space-y-6 pr-12">
-              <p className="text-sm uppercase tracking-[0.35em] text-white/60">
+            <div className="relative z-10 max-w-xl space-y-4 pr-4 sm:space-y-6 sm:pr-12">
+              <p className="text-[0.7rem] uppercase tracking-[0.35em] text-white/60 sm:text-xs">
                 Autonomous Delivery Robotics
               </p>
-              <h1 className="text-3xl font-semibold leading-snug text-white sm:text-4xl lg:text-4xl">
+              <h1 className="text-2xl font-semibold leading-snug text-white sm:text-3xl lg:text-4xl">
                 Autonomous delivery robots for the next local delivery
               </h1>
-              <p className="text-lg text-white/85">
+              <p className="text-sm text-white/85 sm:text-base lg:text-lg">
                 Saamon enables low-cost, self-driving delivery for enterprise
-                retailers and delivery apps
+                retailers and delivery apps.
               </p>
 
-              {/* メールアドレス1項目だけの Formspree フォーム */}
               <HeroEmailForm />
             </div>
           </motion.div>
@@ -191,17 +190,17 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="space-y-6 rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
+          className="space-y-6 rounded-[28px] border border-[#e5e7eb] bg-[#ffffff] p-6 shadow-card sm:rounded-[32px] sm:p-8"
         >
           <div className="space-y-3">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#6b7280] sm:text-sm">
               The Solution
             </p>
-            <h2 className="text-3xl font-semibold text-[#002f6c]">
+            <h2 className="text-2xl font-semibold text-[#002f6c] sm:text-3xl">
               Stable delivery. Reliable autonomy. Lower cost per drop.
             </h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {featureCards.map((card) => (
               <FeatureCard key={card.title} card={card} />
             ))}
@@ -214,34 +213,35 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="rounded-[32px] border border-[#e5e7eb] bg-[#ffffff] p-8 shadow-card"
+          className="rounded-[28px] border border-[#e5e7eb] bg-[#ffffff] p-6 shadow-card sm:rounded-[32px] sm:p-8"
         >
-          <div className="mb-8">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+          <div className="mb-6 sm:mb-8">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#6b7280] sm:text-sm">
               Use Cases
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[#002f6c]">
+            <h2 className="mt-3 text-2xl font-semibold text-[#002f6c] sm:text-3xl">
               Built for high-density operators
             </h2>
-            <p className="mt-4 max-w-xl text-[#4b5563]">
+            <p className="mt-3 max-w-xl text-sm text-[#4b5563] sm:mt-4 sm:text-base">
               We partner with retailers, delivery platforms, and restaurants to
               enable reliable autonomous delivery for local operations.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {targets.map((target) => (
               <div
                 key={target.title}
-                className="flex flex-col gap-4 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-6 shadow-card transition hover:shadow-cardHover"
+                className="flex h-full flex-col gap-3 rounded-3xl border border-[#e5e7eb] bg-[#f9fafb] p-5 shadow-card transition hover:shadow-cardHover sm:gap-4 sm:p-6"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-white">
                   {target.icon()}
                 </div>
-                <h3 className="text-xl font-semibold text-[#002f6c]">
+                <h3 className="text-lg font-semibold text-[#002f6c] sm:text-xl">
                   {target.title}
                 </h3>
-                <p className="text-[#4b5563]">{target.description}</p>
+                <p className="text-sm text-[#4b5563] sm:text-base">
+                  {target.description}</p>
               </div>
             ))}
           </div>
@@ -254,15 +254,15 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="rounded-[32px] border border-[#e5e7eb] bg-white p-8 shadow-card"
+          className="rounded-[28px] border border-[#e5e7eb] bg-white p-6 shadow-card sm:rounded-[32px] sm:p-8"
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#6b7280]">
+          <p className="text-xs uppercase tracking-[0.35em] text-[#6b7280] sm:text-sm">
             Contact
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-[#002f6c]">
+          <h2 className="mt-2 text-2xl font-semibold text-[#002f6c] sm:text-3xl">
             Request a Pilot
           </h2>
-          <p className="mt-3 max-w-xl text-[#4b5563]">
+          <p className="mt-3 max-w-xl text-sm text-[#4b5563] sm:text-base">
             We partner with retailers, delivery platforms, and municipalities to
             deploy autonomous deliveries.
           </p>
@@ -278,13 +278,13 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="mx-auto mt-10 w-full max-w-6xl border-t border-[#e5e7eb] pt-6 text-[#6b7280]"
+          className="mx-auto mt-8 w-full max-w-6xl border-t border-[#e5e7eb] pt-5 text-[#6b7280] sm:mt-10 sm:pt-6"
         >
-          <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
-            <span className="text-sm">
+          <div className="flex flex-col items-center justify-between gap-2 text-center text-xs sm:flex-row sm:items-center sm:gap-3 sm:text-sm">
+            <span>
               © {new Date().getFullYear()} Saamon. All rights reserved.
             </span>
-            <span className="text-xs">
+            <span className="text-[0.7rem] sm:text-xs">
               Built for the next generation of local delivery.
             </span>
           </div>
@@ -337,19 +337,19 @@ function FeatureCard({ card }: { card: FeatureCardConfig }) {
         className="group relative h-full rounded-3xl bg-gradient-to-br from-[#ffffff] via-[#f3f4f6] to-[#e5e7eb] p-[1.5px] shadow-[0_20px_40px_rgba(15,23,42,0.15)]"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
-        <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/70 bg-white p-6">
+        <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/70 bg-white p-5 sm:p-6">
           <motion.div
             aria-hidden
             className={`pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-80 ${card.accent}`}
             style={{ x: glowX, y: glowY }}
           />
-          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-[#f3f4f6] text-[#002f6c]">
+          <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e5e7eb] bg-[#f3f4f6] text-[#002f6c] sm:mb-6">
             {card.icon()}
           </div>
-          <h3 className="mb-3 text-xl font-semibold text-[#002f6c]">
+          <h3 className="mb-2 text-lg font-semibold text-[#002f6c] sm:mb-3 sm:text-xl">
             {card.title}
           </h3>
-          <p className="text-[#4b5563]">{card.copy}</p>
+          <p className="text-sm text-[#4b5563] sm:text-base">{card.copy}</p>
         </div>
       </motion.div>
     </div>
