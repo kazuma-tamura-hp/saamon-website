@@ -10,6 +10,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
+import Image from "next/image"; // ★ 追加
 import ContactForm from "@/components/ContactForm";
 import HeroEmailForm from "@/components/HeroEmailForm";
 
@@ -151,9 +152,21 @@ export default function Home() {
         <section className="relative">
           <motion.div
             variants={fadeIn}
-            className="relative flex min-h-[550px] flex-col justify-center gap-8 overflow-hidden rounded-[32px] border border-[#e5e7eb] bg-[url('/saamon-robot.png')] bg-cover bg-center p-10 shadow-[0_30px_80px_rgba(15,23,42,0.30)]"
+            className="relative flex min-h-[550px] flex-col justify-center gap-8 overflow-hidden rounded-[32px] border border-[#e5e7eb] p-10 shadow-[0_30px_80px_rgba(15,23,42,0.30)]"
           >
+            {/* 背景画像（SEO対応・alt付き） */}
+            <Image
+              src="/saamon-robot.png"
+              alt="3D model of Saamon’s autonomous delivery robot designed for self-driving last-mile delivery in urban environments."
+              fill
+              priority
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            {/* 暗くするオーバーレイ */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+
+            {/* テキストコンテンツ */}
             <div className="relative z-10 max-w-lg space-y-6 pr-12">
               <p className="text-sm uppercase tracking-[0.35em] text-white/60">
                 Autonomous Delivery Robotics
@@ -286,16 +299,16 @@ function FeatureCard({ card }: { card: FeatureCardConfig }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(
-    useTransform(mouseY, [-0.5, 0.5], [8, -8]),
-    { stiffness: 120, damping: 20 }
-  );
-  const rotateY = useSpring(
-    useTransform(mouseX, [-0.5, 0.5], [-8, 8]),
-    { stiffness: 120, damping: 20 }
-  );
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
+    stiffness: 120,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
+    stiffness: 120,
+    damping: 20,
+  });
   const glowX = useTransform(mouseX, [-0.5, 0.5], [25, -25]);
-  const glowY = useTransform(mouseY, [-0.5, 0.5], [25, -25]);
+  const glowY = useTransform(mouseY, [-0.5, 0.5], [25, 25]);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;

@@ -10,9 +10,9 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Saamon Robotics | Autonomous Delivery",
+  title: "Autonomous Delivery Robots for Last-Mile delivery | Saamon Robotics",
   description:
-    "Seed-stage robotics startup building the future of autonomous last-mile delivery.",
+    "Saamon Robotics builds autonomous delivery robots designed for affordable, self-driving last-mile delivery. Reliable electric mobility for retailers, food delivery apps, and enterprise logistics.",
 };
 
 export default function RootLayout({
