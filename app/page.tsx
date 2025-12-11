@@ -132,9 +132,18 @@ export default function Home() {
           variants={fadeIn}
           className="sticky top-3 z-10 flex items-center justify-between rounded-2xl border border-[#e5e7eb] bg-[#ffffffd9] px-4 py-3 text-xs shadow-md backdrop-blur-xl sm:top-6 sm:px-6 sm:text-sm"
         >
-          <div className="font-semibold tracking-[0.25em] text-[#002f6c]">
-            SAAMON
+          {/* ロゴ */}
+          <div className="flex items-center">
+            <Image
+              src="/saamon_logo_colour-P.png"
+              alt="Saamon logo"
+              width={120}
+              height={40}
+              className="h-8 w-auto object-contain mt-[3px] sm:h-9"
+              priority
+            />
           </div>
+
           <button
             onClick={scrollToContact}
             className="
@@ -241,7 +250,8 @@ export default function Home() {
                   {target.title}
                 </h3>
                 <p className="text-sm text-[#4b5563] sm:text-base">
-                  {target.description}</p>
+                  {target.description}
+                </p>
               </div>
             ))}
           </div>
