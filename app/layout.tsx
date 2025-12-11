@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";  // ← 追加
+import { Analytics } from "@vercel/analytics/next";
 
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
@@ -141,8 +141,6 @@ export default function RootLayout({
 
       <body className="font-sans antialiased bg-[#f2f2f2] text-[#111827]">
         {children}
-
-        {/* ← Analytics をここに追加 */}
         <Analytics />
       </body>
     </html>
