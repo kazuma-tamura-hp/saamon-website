@@ -1,6 +1,14 @@
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
+/**
+ * 静的に生成する locale を明示
+ * → Vercel の prerender / export エラー回避
+ */
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ja" }];
+}
+
 export default async function LocaleLayout({
   children,
   params,
