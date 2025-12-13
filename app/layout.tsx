@@ -1,14 +1,21 @@
-import { Analytics } from "@vercel/analytics/react";  // ← 追加
+import { Analytics } from "@vercel/analytics/react";
 
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Noto_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 
-// ▼ Noto Sans を読み込む
+// ▼ Noto Sans（デフォルト：英語側などのベース）
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-noto",
+});
+
+// ▼ Roboto（日本語ページでだけ適用する）
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
 });
 
 // ===== Saamon の基本情報 =====
@@ -126,7 +133,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={notoSans.variable}>
+    <html lang="en" className={`${notoSans.variable} ${roboto.variable}`}>
       <head>
         <meta
           name="google-site-verification"
@@ -141,8 +148,6 @@ export default function RootLayout({
 
       <body className="font-sans antialiased bg-[#f2f2f2] text-[#111827]">
         {children}
-
-        {/* ← Analytics をここに追加 */}
         <Analytics />
       </body>
     </html>

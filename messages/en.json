@@ -1,0 +1,58 @@
+{
+    "header": { "cta": "Contact us" },
+    "hero": {
+      "kicker": "Autonomous Delivery Robotics",
+      "title": "Autonomous delivery robots for the next local delivery",
+      "subtitle": "Saamon enables low-cost, self-driving delivery for enterprise retailers and delivery apps."
+    },
+    "solution": {
+      "kicker": "The Solution",
+      "title": "Stable delivery. Reliable autonomy. Lower cost per drop.",
+      "cards": {
+        "cost": {
+          "title": "Cost Efficiency",
+          "a": "Lower cost per delivery. No incentives, no shift management, and no onboarding.",
+          "b": "Achieve economies of scale through software."
+        },
+        "supply": {
+          "title": "Stable Supply",
+          "a": "No pre-scheduling needed.",
+          "b": "Reliable performance during peak hours for high-volume operators."
+        },
+        "esg": {
+          "title": "Carbon Reduction Responsibility",
+          "a": "Zero-emission electric mobility.",
+          "b": "Supports your ESG and sustainability goals."
+        }
+      }
+    },
+    "useCases": {
+      "kicker": "Use Cases",
+      "title": "Built for high-density operators",
+      "subtitle": "We partner with retailers, delivery platforms, and restaurants to enable reliable autonomous delivery for local operations.",
+      "cards": {
+        "grocery": {
+          "title": "Grocery Retailers",
+          "desc": "Deliver groceries quickly and sustainably within nearby neighborhoods."
+        },
+        "apps": {
+          "title": "Delivery Apps",
+          "desc": "Integrate smoothly with your current operations and lower customer acquisition costs."
+        },
+        "restaurants": {
+          "title": "Restaurants",
+          "desc": "Handle high-volume orders, even during peak hours. Our robots promote your brand presence and increase local awareness."
+        }
+      }
+    },
+    "contact": {
+      "kicker": "Contact",
+      "title": "Request a Pilot",
+      "subtitle": "We partner with retailers, delivery platforms, and municipalities to deploy autonomous deliveries."
+    },
+    "footer": {
+      "line1": "© {year} Saamon. All rights reserved.",
+      "line2": "Built for the next generation of local delivery."
+    }
+  }
+  

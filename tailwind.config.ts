@@ -12,18 +12,21 @@ const config: Config = {
     extend: {
       colors: {
         saamon: {
-          base: "#F2F2F2",      // ページ背景
-          baseSoft: "#FFFFFF",  // カード背景
-          primary: "#002F6C",   // ネイビー（メイン）
-          accent: "#FA8072",    // CTAカラー
-          text: "#1A1A1A",      // メインテキスト
+          base: "#F2F2F2", // ページ背景
+          baseSoft: "#FFFFFF", // カード背景
+          primary: "#002F6C", // ネイビー（メイン）
+          accent: "#FA8072", // CTAカラー
+          text: "#1A1A1A", // メインテキスト
           textMuted: "#4A4A4A", // サブテキスト
         },
       },
 
-      // ▼ フォントを Inter → Noto Sans に変更
+      // ▼ ベース（今まで通り）
       fontFamily: {
         sans: ["var(--font-noto)", "Noto Sans", "sans-serif"],
+
+        // ▼ 日本語ページだけで使う
+        roboto: ["var(--font-roboto)", "Roboto", "system-ui", "sans-serif"],
       },
 
       boxShadow: {

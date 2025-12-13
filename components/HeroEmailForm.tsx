@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 
 export default function HeroEmailForm() {
+  const locale = useLocale();
+  const isJa = locale === "ja";
+
   const [email, setEmail] = useState("");
   const [status, setStatus] =
     useState<"idle" | "success" | "error">("idle");
@@ -26,48 +30,58 @@ export default function HeroEmailForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md">
-      {/* メール入力 + ボタン（スマホは縦 / sm 以上は横） */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <input
           type="email"
           value={email}
           required
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
+          placeholder={
+            isJa ? "メールアドレスを入力" : "you@example.com"
+          }
           className="
-            flex-1 rounded-full border border-white/40 bg-white/10
-            px-4 py-3 text-white placeholder-white/60 backdrop-blur-md
-            focus:outline-none focus:ring-2 focus:ring-[#fa8072]
+            flex-1
+            rounded-full
+            border-2 border-[#fa8072]
+            bg-white
+            px-5 py-3
+            text-sm text-[#111827]
+            placeholder:text-[#9ca3af]
+            outline-none
+            transition
+            focus:ring-4 focus:ring-[#fa8072]/20
           "
         />
 
-        {/* ★ 左寄せ + 幅1/3（スマホ） */}
         <button
           type="submit"
           className="
             inline-flex items-center justify-center whitespace-nowrap
             rounded-full bg-[#fa8072]
-            w-1/3            /* ← スマホ時: メール欄の1/3幅 */
-            px-3 py-3 text-sm font-medium text-white shadow-md
+            w-[40%]
+            px-4 py-3 text-sm font-medium text-white shadow-md
             transition hover:bg-[#e87065]
 
-            sm:w-auto sm:px-6 sm:text-sm
+            sm:w-auto sm:px-8 sm:text-sm
           "
         >
-          Contact us
+          {isJa ? "送信" : "Contact us"}
         </button>
       </div>
 
-      {/* 成功 / エラーメッセージ */}
       {status === "success" && (
-        <p className="mt-3 text-sm text-green-300">
-          Thanks! We will get back to you soon.
+        <p className="mt-3 text-sm text-green-600">
+          {isJa
+            ? "送信しました。追ってご連絡します。"
+            : "Thanks! We will get back to you soon."}
         </p>
       )}
 
       {status === "error" && (
-        <p className="mt-3 text-sm text-red-300">
-          Something went wrong. Please try again.
+        <p className="mt-3 text-sm text-red-600">
+          {isJa
+            ? "送信に失敗しました。もう一度お試しください。"
+            : "Something went wrong. Please try again."}
         </p>
       )}
     </form>
